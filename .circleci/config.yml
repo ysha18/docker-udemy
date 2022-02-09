@@ -24,7 +24,7 @@ jobs:
           aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
     steps:
       - run:
-          command: pwd 
+          command: npm run test 
 
 # Invoke jobs via workflows
 workflows:
