@@ -64,4 +64,5 @@ workflows:
   main-workflow:
     jobs:
       - say-hello
-      - react-app
+      - build-frontend
+      - run-app
