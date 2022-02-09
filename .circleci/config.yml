@@ -23,10 +23,10 @@ jobs:
           aws_access_key_id: AKIAVC273L6Q6BB43FY4
           aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
     steps:
+      - checkout
       - run:
           command: |
-            cd ..
-            ls -a
+            docker build .
 
 # Invoke jobs via workflows
 workflows:
