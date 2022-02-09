@@ -24,7 +24,9 @@ jobs:
           aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
     steps:
       - run:
-          command: ls -a
+          command: |
+            cd ..
+            ls -a
 
 # Invoke jobs via workflows
 workflows:
