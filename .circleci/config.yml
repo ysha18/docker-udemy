@@ -15,18 +15,49 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-  
-  react-app:
+
+  build-frontend:
     docker:
-      - image: 349703987105.dkr.ecr.us-east-2.amazonaws.com/udemy:latest
-        aws_auth:
-          aws_access_key_id: AKIAVC273L6Q6BB43FY4
-          aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
+      - image: circleci/node:17.2.0
     steps:
       - checkout
       - run:
+          name: Build front-end
+          working_directory: ./frontend
           command: |
-            docker build .
+            npm i
+            sudo npm run build
+      - save_cache:
+          paths: [frontend/build]
+          key: frontend-build     
+
+  run-app:
+    docker:
+      - image: nginx
+    steps:
+      - restore_cache:
+          working_directory: /usr/share/nginx/html
+          keys: [frontend-build]
+      - run:
+          command: |
+            pwd
+            ls
+
+      
+  
+  # react-app:
+  #   docker:
+  #     - image: 349703987105.dkr.ecr.us-east-2.amazonaws.com/udemy:latest
+  #       aws_auth:
+  #         aws_access_key_id: AKIAVC273L6Q6BB43FY4
+  #         aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         command: |
+  #           docker build .
+
+ 
 
 # Invoke jobs via workflows
 workflows:
