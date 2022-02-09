@@ -19,7 +19,7 @@ jobs:
   react-app:
     docker:
       - image: 349703987105.dkr.ecr.us-east-2.amazonaws.com/udemy:latest
-      aws_auth:
+        aws_auth:
           aws_access_key_id: AKIAVC273L6Q6BB43FY4
           aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
     steps:
