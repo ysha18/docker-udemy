@@ -9,10 +9,10 @@ jobs:
     steps:
      - checkout
      # build the application image
-     - run: docker build -t ./frontend/hyeo/react-app-image .
+     - run: docker build -t hyeo/app-image ./frontend/
 
      # deploy the image
-     - run: docker run hyeo/react-app-image npm run test -- --coverage
+     - run: docker run hyeo/app-image npm run test -- --coverage
 
 
 
