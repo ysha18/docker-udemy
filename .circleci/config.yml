@@ -5,31 +5,31 @@ orbs:
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  build:
-    machine: true
-    steps:
-     - checkout
-     # build the application image
-     - run: 
-        name: build app image
-        working_directory: ./frontend
-        command: |
-          docker build -t hyeo/app-image -f Dockerfile.dev .
+# jobs:
+#   build:
+#     machine: true
+#     steps:
+#      - checkout
+#      # build the application image
+#      - run: 
+#         name: build app image
+#         working_directory: ./frontend
+#         command: |
+#           docker build -t hyeo/app-image -f Dockerfile.dev .
 
-     - run: 
-        name: run test
-        working_directory: ./frontend
-        command: |
-          docker run hyeo/app-image npm run test -- --coverage
+    #  - run: 
+    #     name: run test
+    #     working_directory: ./frontend
+    #     command: |
+    #       docker run hyeo/app-image npm run test -- --coverage
 
 workflows:
   main-workflow:
     jobs:
-      - build
+      # - build
       - eb/deploy:
-          requires:
-            - build
+          # requires:
+          #   - build
           context: aws-creds
           environment-name: Dockerreact-env
           app-dir: ./frontend
