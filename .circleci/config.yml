@@ -18,7 +18,7 @@ jobs:
 
   build-frontend:
     docker:
-      - image: circleci/node:17.2.0
+      - image: node:16-alpine
     steps:
       - checkout
       - run:
@@ -27,21 +27,27 @@ jobs:
           command: |
             npm i
             sudo npm run build
-      - save_cache:
-          paths: [frontend/build]
-          key: frontend-build     
+      - persist_to_workspace:
+          root: /tmp/
+          paths:
+            - build
+      # - save_cache:
+      #     paths: [./build]
+      #     key: frontend-build     
 
   run-app:
     docker:
       - image: nginx
     steps:
-      - restore_cache:
-          working_directory: /usr/share/nginx/html
-          keys: [frontend-build]
+      - attach_workspace:
+          at: /tmp/
       - run:
+          name: run nginx
+          working_directory: /usr/share/nginx/html
           command: |
             pwd
-            ls
+            cp /tmp/build .
+            ls -la
 
       
   
@@ -66,3 +72,4 @@ workflows:
       - say-hello
       - build-frontend
       - run-app
+        requires: [build-frontend]
