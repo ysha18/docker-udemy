@@ -71,5 +71,5 @@ workflows:
     jobs:
       - say-hello
       - build-frontend
-      - run-app
-        requires: [build-frontend]
+      - run-app:
+          requires: [build-frontend]
