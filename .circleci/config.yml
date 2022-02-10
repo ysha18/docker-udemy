@@ -13,6 +13,7 @@ jobs:
           name: Build front-end
           working_directory: ./frontend
           command: |
+            set -ex
             npm i
             npm run build
       - persist_to_workspace:
@@ -34,7 +35,7 @@ jobs:
           working_directory: /usr/share/nginx/html
           command: |
             pwd
-            cp /tmp/build .
+            cp -r /tmp/build/* .
             ls -la
 
       
