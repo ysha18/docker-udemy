@@ -28,7 +28,7 @@ jobs:
             npm i
             npm run build
       - persist_to_workspace:
-          root: /tmp/
+          root: .
           paths:
             - build
       # - save_cache:
