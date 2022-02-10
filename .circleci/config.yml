@@ -1,5 +1,7 @@
 
 version: 2.1
+orbs: 
+  eb: circleci/aws-elastic-beanstalk@2.0.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -21,12 +23,20 @@ jobs:
         command: |
           docker run hyeo/app-image npm run test -- --coverage
 
-
-
 workflows:
   main-workflow:
     jobs:
       - build
+      - eb/deploy:
+          requires:
+            - build
+          context: aws-creds
+          environment-name: Dockerreact-env
+          app-dir: ./frontend
+          filters:
+            branches:
+              only:
+                - feature
 
   # build-frontend:
   #   docker:
