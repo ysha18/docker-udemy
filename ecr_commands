@@ -4,6 +4,6 @@ aws ecr get-login-password --region us-east-2 | docker login --username AWS --pa
 
 docker build -t udemy .
 
-docker tag udemy:latest 349703987105.dkr.ecr.us-east-2.amazonaws.com/udemy:latest
+docker tag ba6afdc00d69 349703987105.dkr.ecr.us-east-2.amazonaws.com/udemy:latest
 
 docker push 349703987105.dkr.ecr.us-east-2.amazonaws.com/udemy:latest
