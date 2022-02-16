@@ -15,7 +15,7 @@ jobs:
         name: build app image
         working_directory: ./frontend
         command: |
-          docker build -t hyeo/app-image Dockerfile .
+          docker build -t hyeo/app-image .
 
     #  - run: 
     #     name: run test
