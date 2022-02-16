@@ -29,8 +29,8 @@ workflows:
       # - build
       - eb/deploy:
           context: aws-creds
-          environment-name: Dockerreact-env
-          application-name: docker-react
+          environment-name: Reactdocker-env
+          application-name: react-docker
           app-dir: ./frontend
           filters:
             branches:
