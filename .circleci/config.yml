@@ -31,7 +31,6 @@ workflows:
           context: aws-creds
           environment-name: Dockerreact-env
           application-name: docker-react
-          app-dir: /usr/share/nginx/html
           filters:
             branches:
               only:
