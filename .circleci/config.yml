@@ -31,7 +31,7 @@ workflows:
           context: aws-creds
           environment-name: Dockerreact-env
           application-name: docker-react
-          aap-dir: ./frontend
+          app-dir: ./frontend
           filters:
             branches:
               only:
