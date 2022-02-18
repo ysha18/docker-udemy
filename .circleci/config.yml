@@ -23,19 +23,20 @@ version: 2.1
     #     command: |
     #       docker run hyeo/app-image npm run test -- --coverage
 
-# workflows:
-  # main-workflow:
-  #   jobs:
-  #     # - build
-  #     - eb/deploy:
-  #         context: aws-creds
-  #         environment-name: Reactdocker-env
-  #         application-name: react-docker
-  #         app-dir: ./frontend
-  #         filters:
-  #           branches:
-  #             only:
+workflows:
+  main-workflow:
+    jobs:
+      # - build
+      - eb/deploy:
+          context: aws-creds
+          environment-name: Reactdocker-env
+          application-name: react-docker
+          app-dir: ./frontend
+          filters:
+            branches:
+              ignore:
                 - feature
+              
           # requires:
           #   - build
 
